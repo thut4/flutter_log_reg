@@ -13,7 +13,27 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _txtcontroller = TextEditingController();
+  final TextEditingController _pwdcontroller = TextEditingController();
   var rememberValue = false;
+  bool isPasswordVisible = false;
+  void initState() {
+    super.initState();
+    _txtcontroller.addListener(() {
+      setState(() {});
+    });
+
+    _txtcontroller.addListener(() {
+      final String text = _txtcontroller.text.toLowerCase();
+      _txtcontroller.value = _txtcontroller.value.copyWith(
+        text: text,
+        selection:
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
+  }
+
   @override
   final txtcolor = TextStyle(
     color: Colors.grey[900],
@@ -47,7 +67,18 @@ class _LoginState extends State<Login> {
                           ? null
                           : "Please enter a valid email",
                       maxLines: 1,
+                      controller: _txtcontroller,
+                      textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
+                        suffixIcon: _txtcontroller.text.isEmpty
+                            ? Container(
+                                width: 0,
+                              )
+                            : IconButton(
+                                onPressed: (() {
+                                  _txtcontroller.clear();
+                                }),
+                                icon: Icon(Icons.clear)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -69,11 +100,19 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
-                      obscureText: true,
+                      controller: _pwdcontroller,
+                      obscureText: isPasswordVisible,
                       maxLines: 1,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: isPasswordVisible
+                              ? Icon(Icons.visibility_off)
+                              : Icon(Icons.visibility),
+                          onPressed: () => setState(
+                              () => isPasswordVisible = !isPasswordVisible),
                         ),
                         hintText: 'Enter your password',
                         hintStyle: txtcolor,

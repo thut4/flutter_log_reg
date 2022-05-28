@@ -12,6 +12,26 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
+  final TextEditingController _txtcontroller = TextEditingController();
+  final TextEditingController _pwdcontroller = TextEditingController();
+  bool isPasswordVisible = false;
+  void initState() {
+    super.initState();
+    _txtcontroller.addListener(() {
+      setState(() {});
+    });
+
+    _txtcontroller.addListener(() {
+      final String text = _txtcontroller.text.toLowerCase();
+      _txtcontroller.value = _txtcontroller.value.copyWith(
+        text: text,
+        selection:
+            TextSelection(baseOffset: text.length, extentOffset: text.length),
+        composing: TextRange.empty,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +101,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         ? null
                         : "Please enter a valid email",
                     maxLines: 1,
+                    controller: _txtcontroller,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
+                      suffixIcon: _txtcontroller.text.isEmpty
+                          ? Container(
+                              width: 0,
+                            )
+                          : IconButton(
+                              onPressed: (() {
+                                _txtcontroller.clear();
+                              }),
+                              icon: Icon(Icons.clear)),
                       hintText: 'Enter your email',
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
@@ -100,8 +131,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                     maxLines: 1,
-                    obscureText: true,
+                    //obscureText: true,
+                    controller: _pwdcontroller,
+                    obscureText: isPasswordVisible,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: isPasswordVisible
+                            ? Icon(Icons.visibility_off)
+                            : Icon(Icons.visibility),
+                        onPressed: () => setState(
+                            () => isPasswordVisible = !isPasswordVisible),
+                      ),
                       prefixIcon: const Icon(Icons.lock),
                       hintText: 'Enter your password',
                       border: OutlineInputBorder(
