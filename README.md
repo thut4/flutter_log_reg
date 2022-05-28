@@ -1,10 +1,10 @@
-# register
+# register and login form
 
 A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a register and login form for flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
