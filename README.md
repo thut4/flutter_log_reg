@@ -1,17 +1,13 @@
 # register and login form
-
-A new Flutter project.
-
 ## Getting Started
 
 This project is a register and login form for flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 "#sample flutter login and register form with an email validation package" 
+
+## Login Page
+![login](https://user-images.githubusercontent.com/62836983/174011574-1c3dbbbd-ea95-4d7b-a0d9-f1c82f40bb41.png)
+
+## Register Page
+
+![register](https://user-images.githubusercontent.com/62836983/174011717-65085e0c-dd6b-4be3-b97c-06840025e358.png)
+
