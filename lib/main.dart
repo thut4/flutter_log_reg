@@ -7,9 +7,9 @@ void main() => runApp(MaterialApp(
         initialRoute: '/login',
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => Loading(),
+          '/': (context) => const Loading(),
           '/login': (context) => Login(),
-          '/register': (context) => RegisterPage(),
+          '/register': (context) => const RegisterPage(),
         }
         //home: Login(),
         ));

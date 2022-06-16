@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:register/login.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -15,6 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _txtcontroller = TextEditingController();
   final TextEditingController _pwdcontroller = TextEditingController();
   bool isPasswordVisible = false;
+  @override
   void initState() {
     super.initState();
     _txtcontroller.addListener(() {
@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title:const Text('Register'),
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -100,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => EmailValidator.validate(value!)
                         ? null
                         : "Please enter a valid email",
-                    maxLines: 1,
+                    //maxLines: 1,
                     controller: _txtcontroller,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               onPressed: (() {
                                 _txtcontroller.clear();
                               }),
-                              icon: Icon(Icons.clear)),
+                              icon:const Icon(Icons.clear)),
                       hintText: 'Enter your email',
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
@@ -137,8 +137,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: isPasswordVisible
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
                         onPressed: () => setState(
                             () => isPasswordVisible = !isPasswordVisible),
                       ),

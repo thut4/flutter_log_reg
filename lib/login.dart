@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:register/register.dart';
 import 'package:email_validator/email_validator.dart';
 
 class Login extends StatefulWidget {
@@ -17,6 +14,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _pwdcontroller = TextEditingController();
   var rememberValue = false;
   bool isPasswordVisible = false;
+  @override
   void initState() {
     super.initState();
     _txtcontroller.addListener(() {
@@ -34,16 +32,16 @@ class _LoginState extends State<Login> {
     });
   }
 
-  @override
   final txtcolor = TextStyle(
     color: Colors.grey[900],
     fontSize: 16,
   );
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[550],
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(12),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,7 +54,7 @@ class _LoginState extends State<Login> {
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
             Form(
                 key: _formKey,
@@ -66,7 +64,7 @@ class _LoginState extends State<Login> {
                       validator: (value) => EmailValidator.validate(value!)
                           ? null
                           : "Please enter a valid email",
-                      maxLines: 1,
+                      //maxLines: 1,
                       controller: _txtcontroller,
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
@@ -78,7 +76,7 @@ class _LoginState extends State<Login> {
                                 onPressed: (() {
                                   _txtcontroller.clear();
                                 }),
-                                icon: Icon(Icons.clear)),
+                                icon: const Icon(Icons.clear)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -86,7 +84,7 @@ class _LoginState extends State<Login> {
                         hintStyle: txtcolor,
                         labelText: 'Name',
                         labelStyle: txtcolor,
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person),
                         iconColor: Colors.blueAccent,
                       ),
                     ),
@@ -102,15 +100,15 @@ class _LoginState extends State<Login> {
                       },
                       controller: _pwdcontroller,
                       obscureText: isPasswordVisible,
-                      maxLines: 1,
+                      //maxLines: 1,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
+                        // border: OutlineInputBorder(
+                        //   borderRadius: BorderRadius.circular(5),
+                        // ),
                         suffixIcon: IconButton(
                           icon: isPasswordVisible
-                              ? Icon(Icons.visibility_off)
-                              : Icon(Icons.visibility),
+                              ? const Icon(Icons.visibility_off)
+                              : const Icon(Icons.visibility),
                           onPressed: () => setState(
                               () => isPasswordVisible = !isPasswordVisible),
                         ),
@@ -118,7 +116,7 @@ class _LoginState extends State<Login> {
                         hintStyle: txtcolor,
                         labelText: 'Password',
                         labelStyle: txtcolor,
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                         ),
                         iconColor: Colors.blueAccent,
